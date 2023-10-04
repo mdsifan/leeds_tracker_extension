@@ -1,0 +1,42 @@
+let myLeads = [];
+// //Turn the myLeads string into array
+// myLeads = JSON.parse(myLeads);
+
+// //Push a new value to the array
+// myLeads.push("www.sifan2.com");
+
+// //Turn the array to string again
+// myLeads = JSON.stringify(myLeads);
+
+// //console.log the string using typeof to verify that it's a string
+// console.log(typeof myLeads); it show string
+
+localStorage.clear();
+
+const inputEl = document.getElementById('input-el');
+const inputBtn = document.getElementById('input-btn');
+const ulEl = document.getElementById('ul-el');
+
+inputBtn.addEventListener("click", function () {
+    myLeads.push(inputEl.value);
+    inputEl.value = "";
+
+    localStorage.setItem("myLeads", JSON.stringify(myLeads));
+
+    renderLeads();
+})
+
+function renderLeads() {
+    let listItems = "";
+    myLeads.forEach(function (e) {
+        listItems +=
+            `
+           <li>
+                <a target='_blank' href='${e}'>
+                     ${e} 
+                </a>
+           </li>
+        `
+    })
+    ulEl.innerHTML = listItems;
+}
